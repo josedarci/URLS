@@ -290,11 +290,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('/service-worker.js');
-            });
-        }
+       let dailyRecords = JSON.parse(localStorage.getItem('dailyRecords')) || []; // Carrega os dados salvos ou inicializa uma array vazia
+
+function salvarDailyRecords() {
+    localStorage.setItem('dailyRecords', JSON.stringify(dailyRecords)); // Salva os dados no LocalStorage
+    renderDailyTable();
+}
+
+// Função para adicionar nova reunião daily
+document.getElementById('dailyForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const date = document.getElementById('dailyDate').value;
+    const time = document.getElementById('dailyTime').value;
+    const description = document.getElementById('dailyDescription').value;
+
+    dailyRecords.push({ date, time, description });
+    salvarDailyRecords(); // Salva e renderiza
+    $('#dailyModal').modal('hide');
+});
+        function renderDailyTable() {
+    const tableBody = document.getElementById('dailyTableBody');
+    tableBody.innerHTML = '';
+    dailyRecords.forEach((record, index) => {
+        const row = `
+            <tr>
+                <td>${record.date}</td>
+                <td>${record.time}</td>
+                <td>${record.description}</td>
+                <td><button class="btn btn-info" onclick="openEditModal(${index})">Abrir</button></td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    renderDailyTable(); // Renderiza os dados ao carregar a página
+});
+function openEditModal(index) {
+    const record = dailyRecords[index];
+    document.getElementById('editDailyDate').value = record.date;
+    document.getElementById('editDailyTime').value = record.time;
+    document.getElementById('editDailyDescription').value = record.description;
+
+    document.getElementById('editDailyForm').onsubmit = function (e) {
+        e.preventDefault();
+        record.date = document.getElementById('editDailyDate').value;
+        record.time = document.getElementById('editDailyTime').value;
+        record.description = document.getElementById('editDailyDescription').value;
+
+        salvarDailyRecords(); // Salva os dados atualizados no LocalStorage
+        $('#editDailyModal').modal('hide');
+    };
+
+    $('#editDailyModal').modal('show');
+}
+
+
+`
         let dadosSalvos = JSON.parse(localStorage.getItem('dados')) || [];
 
             function salvarDados() {
