@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>URLs e APIs</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+
+</head>
+
+<body>
+    <div class="container mt-4">
+        <!-- Abas -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="urls-tab" data-toggle="tab" href="#urls" role="tab" aria-controls="urls"
+                    aria-selected="true">URLs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="apis-tab" data-toggle="tab" href="#apis" role="tab" aria-controls="apis"
+                    aria-selected="false">APIs</a>
+            </li>
+        </ul>
+        <br><br>
+        <!-- Conteúdo das Abas -->
+        <div class="tab-content">
+            <!-- Aba URLs -->
+            <div class="tab-pane fade show active" id="urls" role="tabpanel" aria-labelledby="urls-tab">
+                <!-- Conteúdo Existente Aqui -->
+                <div class="row"><br><br>
+                    <!-- Botão Cadastrar -->
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" data-toggle="modal"
+                            data-target="#cadastroModal">Cadastrar</button>
+                    </div>
+                    <!-- Input de Pesquisa -->
+                    <div class="col-md-4">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar...">
+                    </div>
+                    <!-- Botão Pesquisar -->
+                    <div class="col-md-2">
+                        <button class="btn btn-secondary">Buscar</button>
+                    </div>
+                    <!-- Select -->
+                    <div class="col-md-4">
+                        <select id="ambienteSelect" class="form-control">
+                            <option value="todos">Todos</option>
+                            <option value="developer">Developer</option>
+                            <option value="homolog">Homolog</option>
+                            <option value="producao">Produ&ccedil;&atilde;o</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>URL</th>
+                            <th>Descri&ccedil;&atilde;o</th>
+                            <th>Ambiente</th>
+                            <th></th> <!-- Coluna adicional para botão de excluir -->
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Os dados da tabela serão inseridos aqui -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" aria-labelledby="cadastroModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="cadastroModalLabel">Novo Cadastro</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="cadastroForm">
+                                <div class="form-group">
+                                    <label for="urlInput">URL</label>
+                                    <input type="text" class="form-control" id="urlInput" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="descricaoTextarea">Descri&ccedil;&atilde;o</label>
+                                    <textarea class="form-control" id="descricaoTextarea" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ambienteModalSelect">Ambiente</label>
+                                    <select class="form-control" id="ambienteModalSelect">
+                                        <option value="developer">Developer</option>
+                                        <option value="homolog">Homolog</option>
+                                        <option value="producao">Produ&ccedil;&atilde;o</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aba APIs -->
+
+            <div class="tab-pane fade" id="apis" role="tabpanel" aria-labelledby="apis-tab">
+                <!-- Painel de controle da API -->
+                <div class="row mt-3">
+                    <!-- Botão Cadastrar API -->
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#cadastroApiModal">Cadastrar
+                            API</button>
+                    </div>
+                    <!-- Input de Pesquisa -->
+                    <div class="col-md-6">
+                        <input type="text" id="searchApiInput" class="form-control" placeholder="Pesquisar API...">
+                    </div>
+                    <!-- Botão Pesquisar -->
+                    <div class="col-md-1">
+                        <button class="btn btn-secondary"><i class="fas fa-search"></i></button>
+                    </div>
+                    <!-- Select -->
+                    <div class="col-md-3">
+                        <select id="ambienteApiSelect" class="form-control">
+                            <option value="todos">Todos</option>
+                            <option value="developer">Developer</option>
+                            <option value="homolog">Homolog</option>
+                            <option value="producao">Produ&ccedil;&atilde;o</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Tabela de APIs -->
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th>API</th>
+                            <th>Descri&ccedil;&atilde;o</th>
+                            <th>Ambiente</th>
+                            <th></th> <!-- Coluna para botão de excluir -->
+                        </tr>
+                    </thead>
+                    <tbody id="tableApiBody">
+                        <!-- Os dados da tabela de APIs serão inseridos aqui -->
+                    </tbody>
+                </table>
+
+                <!-- Modal para cadastro de API -->
+                <div class="modal fade" id="cadastroApiModal" tabindex="-1" role="dialog"
+                    aria-labelledby="cadastroApiModalLabel" aria-hidden="true">
+                    <!-- Estrutura do Modal -->
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <!-- Cabeçalho do Modal -->
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="cadastroApiModalLabel">Cadastrar Nova API</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <!-- Corpo do Modal -->
+                            <div class="modal-body">
+                                <form id="cadastroApiForm">
+                                    <!-- Campo API -->
+                                    <div class="form-group">
+                                        <label for="apiInput">API</label>
+                                        <input type="text" class="form-control" id="apiInput" required>
+                                    </div>
+                                    <!-- Campo Descrição -->
+                                    <div class="form-group">
+                                        <label for="descricaoApiTextarea">Descri&ccedil;&atilde;o</label>
+                                        <textarea class="form-control" id="descricaoApiTextarea" required></textarea>
+                                    </div>
+                                    <!-- Campo Ambiente -->
+                                    <div class="form-group">
+                                        <label for="ambienteApiModalSelect">Ambiente</label>
+                                        <select class="form-control" id="ambienteApiModalSelect">
+                                            <option value="developer">Developer</option>
+                                            <option value="homolog">Homolog</option>
+                                            <option value="producao">Produ&ccedil;&atilde;o</option>
+                                        </select>
+                                    </div>
+                                    <!-- Botão Salvar -->
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Carregar dados salvos no LocalStorage
+            const dadosSalvos = JSON.parse(localStorage.getItem('dados')) || [];
+
+            function salvarDados() {
+                localStorage.setItem('dados', JSON.stringify(dadosSalvos));
+                renderizarTabela();
+            }
+
+            function adicionarDados(url, descricao, ambiente) {
+                dadosSalvos.push({ url, descricao, ambiente });
+                salvarDados();
+            }
+
+            function renderizarTabela() {
+                const tabela = document.getElementById('tableBody');
+                tabela.innerHTML = '';
+                dadosSalvos.forEach((dado, index) => {
+                    const linha = `<tr>
+            <td>${dado.url}</td>
+            <td>${dado.descricao}</td>
+            <td>${dado.ambiente}</td>
+            <td><button class="btn btn-danger" onclick="excluirDado(${index})"><i class="fas fa-trash"></i></button></td>
+        </tr>`;
+                    tabela.innerHTML += linha;
+                });
+            }
+            function excluirDado(index) {
+                dadosSalvos.splice(index, 1);
+                salvarDados();
+            }
+
+
+
+            // Evento de submissão do formulário de cadastro
+            document.getElementById('cadastroForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const url = document.getElementById('urlInput').value;
+                const descricao = document.getElementById('descricaoTextarea').value;
+                const ambiente = document.getElementById('ambienteModalSelect').value;
+                adicionarDados(url, descricao, ambiente);
+                $('#cadastroModal').modal('hide');
+            });
+
+            // Evento para filtrar a tabela
+            document.getElementById('ambienteSelect').addEventListener('change', function () {
+                const ambienteSelecionado = this.value;
+                if (ambienteSelecionado === 'todos') {
+                    renderizarTabela();
+                } else {
+                    const tabela = document.getElementById('tableBody');
+                    tabela.innerHTML = '';
+                    dadosSalvos.filter(dado => dado.ambiente === ambienteSelecionado).forEach(dado => {
+                        const linha = `<tr>
+                    <td>${dado.url}</td>
+                    <td>${dado.descricao}</td>
+                    <td>${dado.ambiente}</td>
+                </tr>`;
+                        tabela.innerHTML += linha;
+                    });
+                }
+            });
+
+            // Variável para armazenar os dados das APIs
+            const dadosApis = JSON.parse(localStorage.getItem('dadosApis')) || [];
+
+            function salvarDadosApis() {
+                localStorage.setItem('dadosApis', JSON.stringify(dadosApis));
+                renderizarTabelaApis();
+            }
+
+            function adicionarDadosApi(api, descricao, ambiente) {
+                dadosApis.push({ api, descricao, ambiente });
+                salvarDadosApis();
+            }
+
+            function renderizarTabelaApis() {
+                const tabelaApi = document.getElementById('tableApiBody');
+                tabelaApi.innerHTML = '';
+                dadosApis.forEach((api, index) => {
+                    const linhaApi = `<tr>
+            <td>${api.api}</td>
+            <td>${api.descricao}</td>
+            <td>${api.ambiente}</td>
+            <td><button class="btn btn-danger" onclick="excluirApi(${index})"><i class="fas fa-trash"></i></button></td>
+        </tr>`;
+                    tabelaApi.innerHTML += linhaApi;
+                });
+            }
+
+            function excluirApi(index) {
+                dadosApis.splice(index, 1);
+                salvarDadosApis();
+            }
+
+            // Evento de submissão do formulário de cadastro de API
+            document.getElementById('cadastroApiForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const api = document.getElementById('apiInput').value;
+                const descricao = document.getElementById('descricaoApiTextarea').value;
+                const ambiente = document.getElementById('ambienteApiModalSelect').value;
+                adicionarDadosApi(api, descricao, ambiente);
+                $('#cadastroApiModal').modal('hide');
+            });
+
+            renderizarTabelaApis();
+
+
+            renderizarTabela();
+        });
+
+    </script>
+</body>
+
+</html>
