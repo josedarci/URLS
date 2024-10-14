@@ -21,15 +21,18 @@
                 <a class="nav-link" id="apis-tab" data-toggle="tab" href="#apis" role="tab" aria-controls="apis"
                     aria-selected="false">APIs</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="sprint-tab" data-toggle="tab" href="#sprint" role="tab">Sprint</a>
+            </li>
         </ul>
         <br><br>
-        <!-- Conte˙do das Abas -->
+        <!-- ConteÔøΩdo das Abas -->
         <div class="tab-content">
             <!-- Aba URLs -->
             <div class="tab-pane fade show active" id="urls" role="tabpanel" aria-labelledby="urls-tab">
-                <!-- Conte˙do Existente Aqui -->
+                <!-- ConteÔøΩdo Existente Aqui -->
                 <div class="row"><br><br>
-                    <!-- Bot„o Cadastrar -->
+                    <!-- BotÔøΩo Cadastrar -->
                     <div class="col-md-2">
                         <button class="btn btn-primary" data-toggle="modal"
                             data-target="#cadastroModal">Cadastrar</button>
@@ -38,7 +41,7 @@
                     <div class="col-md-4">
                         <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar...">
                     </div>
-                    <!-- Bot„o Pesquisar -->
+                    <!-- BotÔøΩo Pesquisar -->
                     <div class="col-md-2">
                         <button class="btn btn-secondary">Buscar</button>
                     </div>
@@ -58,11 +61,12 @@
                             <th>URL</th>
                             <th>Descri&ccedil;&atilde;o</th>
                             <th>Ambiente</th>
-                            <th></th> <!-- Coluna adicional para bot„o de excluir -->
+                            <th></th> <!-- Coluna adicional para botÔøΩo de excluir -->
+                            <th>Abrir URL</th> <!-- Nova coluna para abrir a URL -->
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        <!-- Os dados da tabela ser„o inseridos aqui -->
+                        <!-- Os dados da tabela serÔøΩo inseridos aqui -->
                     </tbody>
                 </table>
             </div>
@@ -106,7 +110,7 @@
             <div class="tab-pane fade" id="apis" role="tabpanel" aria-labelledby="apis-tab">
                 <!-- Painel de controle da API -->
                 <div class="row mt-3">
-                    <!-- Bot„o Cadastrar API -->
+                    <!-- BotÔøΩo Cadastrar API -->
                     <div class="col-md-2">
                         <button class="btn btn-primary" data-toggle="modal" data-target="#cadastroApiModal">Cadastrar
                             API</button>
@@ -115,7 +119,7 @@
                     <div class="col-md-6">
                         <input type="text" id="searchApiInput" class="form-control" placeholder="Pesquisar API...">
                     </div>
-                    <!-- Bot„o Pesquisar -->
+                    <!-- BotÔøΩo Pesquisar -->
                     <div class="col-md-1">
                         <button class="btn btn-secondary"><i class="fas fa-search"></i></button>
                     </div>
@@ -137,11 +141,11 @@
                             <th>API</th>
                             <th>Descri&ccedil;&atilde;o</th>
                             <th>Ambiente</th>
-                            <th></th> <!-- Coluna para bot„o de excluir -->
+                            <th></th> <!-- Coluna para botÔøΩo de excluir -->
                         </tr>
                     </thead>
                     <tbody id="tableApiBody">
-                        <!-- Os dados da tabela de APIs ser„o inseridos aqui -->
+                        <!-- Os dados da tabela de APIs serÔøΩo inseridos aqui -->
                     </tbody>
                 </table>
 
@@ -151,7 +155,7 @@
                     <!-- Estrutura do Modal -->
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <!-- CabeÁalho do Modal -->
+                            <!-- CabeÔøΩalho do Modal -->
                             <div class="modal-header">
                                 <h5 class="modal-title" id="cadastroApiModalLabel">Cadastrar Nova API</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -166,7 +170,7 @@
                                         <label for="apiInput">API</label>
                                         <input type="text" class="form-control" id="apiInput" required>
                                     </div>
-                                    <!-- Campo DescriÁ„o -->
+                                    <!-- Campo DescriÔøΩÔøΩo -->
                                     <div class="form-group">
                                         <label for="descricaoApiTextarea">Descri&ccedil;&atilde;o</label>
                                         <textarea class="form-control" id="descricaoApiTextarea" required></textarea>
@@ -180,7 +184,7 @@
                                             <option value="producao">Produ&ccedil;&atilde;o</option>
                                         </select>
                                     </div>
-                                    <!-- Bot„o Salvar -->
+                                    <!-- BotÔøΩo Salvar -->
                                     <button type="submit" class="btn btn-primary">Salvar</button>
                                 </form>
                             </div>
@@ -188,6 +192,97 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Aba Sprint -->
+            <div class="tab-pane fade" id="sprint" role="tabpanel" aria-labelledby="sprint-tab">
+                <div class="row">
+                    <!-- Bot√£o Cadastrar Reuni√£o Daily -->
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#dailyModal">Adicionar Reuni√£o
+                            Daily</button>
+                    </div>
+                </div>
+                <br>
+                <!-- Tabela de Dailies -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Descri√ß√£o</th>
+                            <th></th> <!-- Coluna adicional para o bot√£o abrir -->
+                        </tr>
+                    </thead>
+                    <tbody id="dailyTableBody">
+                        <!-- Os dados da tabela ser√£o inseridos aqui -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- Modal para Adicionar Reuni√£o Daily -->
+            <div class="modal fade" id="dailyModal" tabindex="-1" role="dialog" aria-labelledby="dailyModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="dailyModalLabel">Registrar Reuni√£o Daily</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="dailyForm">
+                                <div class="form-group">
+                                    <label for="dailyDate">Data</label>
+                                    <input type="date" class="form-control" id="dailyDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dailyTime">Hora</label>
+                                    <input type="time" class="form-control" id="dailyTime" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dailyDescription">Descri√ß√£o</label>
+                                    <textarea class="form-control" id="dailyDescription" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para Visualizar/Editar Reuni√£o Daily -->
+            <div class="modal fade" id="editDailyModal" tabindex="-1" role="dialog" aria-labelledby="editDailyModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editDailyModalLabel">Editar Reuni√£o Daily</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editDailyForm">
+                                <div class="form-group">
+                                    <label for="editDailyDate">Data</label>
+                                    <input type="date" class="form-control" id="editDailyDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editDailyTime">Hora</label>
+                                    <input type="time" class="form-control" id="editDailyTime" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editDailyDescription">Descri√ß√£o</label>
+                                    <textarea class="form-control" id="editDailyDescription" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Salvar Altera√ß√µes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
         </div>
     </div>
@@ -200,10 +295,7 @@
                 navigator.serviceWorker.register('/service-worker.js');
             });
         }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            // Carregar dados salvos no LocalStorage
-            const dadosSalvos = JSON.parse(localStorage.getItem('dados')) || [];
+        let dadosSalvos = JSON.parse(localStorage.getItem('dados')) || [];
 
             function salvarDados() {
                 localStorage.setItem('dados', JSON.stringify(dadosSalvos));
@@ -224,6 +316,7 @@
             <td>${dado.descricao}</td>
             <td>${dado.ambiente}</td>
             <td><button class="btn btn-danger" onclick="excluirDado(${index})"><i class="fas fa-trash"></i></button></td>
+             <td><a href="${dado.url}" target="_blank" class="btn btn-success">Abrir URL</a></td> <!-- Bot√£o para abrir a URL -->
         </tr>`;
                     tabela.innerHTML += linha;
                 });
@@ -233,9 +326,13 @@
                 salvarDados();
             }
 
+        document.addEventListener('DOMContentLoaded', function () {
+            // Carregar dados salvos no LocalStorage
+            
 
 
-            // Evento de submiss„o do formul·rio de cadastro
+
+            // Evento de submissÔøΩo do formulÔøΩrio de cadastro
             document.getElementById('cadastroForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const url = document.getElementById('urlInput').value;
@@ -264,7 +361,7 @@
                 }
             });
 
-            // Vari·vel para armazenar os dados das APIs
+            // VariÔøΩvel para armazenar os dados das APIs
             const dadosApis = JSON.parse(localStorage.getItem('dadosApis')) || [];
 
             function salvarDadosApis() {
@@ -296,7 +393,7 @@
                 salvarDadosApis();
             }
 
-            // Evento de submiss„o do formul·rio de cadastro de API
+            // Evento de submissÔøΩo do formulÔøΩrio de cadastro de API
             document.getElementById('cadastroApiForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const api = document.getElementById('apiInput').value;
@@ -312,6 +409,61 @@
             renderizarTabela();
         });
 
+    </script>
+    <script>
+        let dailyRecords = [];
+
+        // Fun√ß√£o para renderizar a tabela
+        function renderDailyTable() {
+            const tableBody = document.getElementById('dailyTableBody');
+            tableBody.innerHTML = '';
+            dailyRecords.forEach((record, index) => {
+                const row = `
+                        <tr>
+                            <td>${record.date}</td>
+                            <td>${record.time}</td>
+                            <td>${record.description}</td>
+                            <td><button class="btn btn-info" onclick="openEditModal(${index})">Abrir</button></td>
+                        </tr>
+                    `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Fun√ß√£o para adicionar nova reuni√£o daily
+        document.getElementById('dailyForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const date = document.getElementById('dailyDate').value;
+            const time = document.getElementById('dailyTime').value;
+            const description = document.getElementById('dailyDescription').value;
+
+            dailyRecords.push({ date, time, description });
+            $('#dailyModal').modal('hide');
+            renderDailyTable();
+        });
+
+        // Fun√ß√£o para abrir o modal de edi√ß√£o com os dados preenchidos
+        function openEditModal(index) {
+            const record = dailyRecords[index];
+            document.getElementById('editDailyDate').value = record.date;
+            document.getElementById('editDailyTime').value = record.time;
+            document.getElementById('editDailyDescription').value = record.description;
+
+            // Atualizar o evento de submiss√£o do formul√°rio de edi√ß√£o
+            document.getElementById('editDailyForm').onsubmit = function (e) {
+                e.preventDefault();
+                record.date = document.getElementById('editDailyDate').value;
+                record.time = document.getElementById('editDailyTime').value;
+                record.description = document.getElementById('editDailyDescription').value;
+
+                $('#editDailyModal').modal('hide');
+                renderDailyTable();
+            };
+
+            $('#editDailyModal').modal('show');
+        }
+
+        renderDailyTable();
     </script>
 </body>
 
